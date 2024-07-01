@@ -1,11 +1,11 @@
 
 from flask import Blueprint, app, render_template 
-from spotify import db 
+from . import db 
 
 bp = Blueprint('cantante',__name__,url_prefix='/cantante') 
 @bp.route('/') 
 def lista(): 
-    base_de_datos = db.get_db()
+    con = db.get_db()
     consulta = """ 
     SELECT Name, ArtistId FROM artists
       ORDER BY Name ASC """
@@ -13,8 +13,7 @@ def lista():
     res = con.execute(consulta) 
     lista_de_cantantes = res.fetchall()
     pagina = render_template('cantantes.html', cantantes=lista_de_cantantes) 
-
-    return render_template("cantantes.html", cantantes=lista_de_cantantes)
+    return pagina
 
 @bp.route('/<int:id>')
 def detalle(id):
@@ -31,4 +30,6 @@ def detalle(id):
      lista_de_albums = res.fetchall() 
      
      pagina = render_template('detalle_cantante.html', 
-                              cantante=cantante, albums = lista_de_albums) return pagina
+                              cantante=cantante, albums = lista_de_albums) 
+     
+     return pagina
