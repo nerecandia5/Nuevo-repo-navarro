@@ -12,8 +12,8 @@
     />
   </head>
   <body class="fondoArt">
-    <h1 class="artistas">Artistas</h1>
-    <h2 class="artista">{{ artista["Name"] }}</h2>
+    <h1 class="artistas">Artista: {{ artista["Name"] }}</h1>
+    <h2>Albums:</h2>
     <ul>
       {% for album in albums %}
       <li>{{ album["Title"] }}</li>

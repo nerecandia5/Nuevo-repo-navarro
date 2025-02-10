@@ -29,7 +29,7 @@ def detalle(id):
      res = con.execute(consulta2, (id,)) 
      lista_de_albums = res.fetchall() 
      
-     pagina = render_template('detalle_cantante.html', 
-                              cantante=cantante, albums = lista_de_albums) 
+     pagina = render_template('detalles_cantantes.html', 
+                              artista=cantante, albums = lista_de_albums) 
      
      return pagina
